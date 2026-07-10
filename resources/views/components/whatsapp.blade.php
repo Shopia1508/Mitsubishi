@@ -2,7 +2,7 @@
    class="floating-wa"
    target="_blank">
 
-    <i class="fa-brands fa-whatsapp"></i>
+    <i class="bi bi-whatsapp"></i>
     
 
 </a>

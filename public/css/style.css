@@ -1,3 +1,7 @@
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
 /* hero section */
 .hero{
     width: 100%;
@@ -10,8 +14,6 @@
     max-width: 1200px;
     margin: auto;
 }
-
-
 
 .heroSwiper img{
     width: 100%;
@@ -36,7 +38,6 @@
     height: 65px;
     border-radius: 50%;
     background: #25D366;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,6 +47,7 @@
     box-shadow: 0 8px 20px rgba(0,0,0,.25);
     transition: .3s ;
     z-index: 9999;
+    animation: pulse 2s infinite;
 }
 
 .floating-wa:hover{
@@ -53,23 +55,16 @@
     background: #20ba5a;
 }
 
-.floating-wa{
-    animation: pulse 2s infinite;
-}
-
 @keyframes pulse{
     0%{
         box-shadow: 0 0 0 0 rgba(37,211,102,.5);
     }
-
     70%{
         box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);
     }
-
     100%{
         box-shadow: 0 0 0 0 rgba(37,211,102,0);
     }
-
 }
 
 /* produk */
@@ -91,51 +86,162 @@
 
 .produk-grid{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 25px;
 }
 
+/* 🔑 Kunci Flexbox Utama */
 .card-produk{
-    background: white;
+    background: #710709;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0,0,0,.08);
     transition: .3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .card-produk:hover{
     transform: translateY(-8px);
 }
 
-.card-produk img{
+/* 🔑 UKURAN KOTAK PUTIH: Dikunci mutlak agar kiri dan kanan kembar seragam */
+.inner-box-produk {
+    background: #ffffff;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 240px; 
+}
+
+/* Memastikan Gambar di dalam kotak putih proporsional */
+.inner-box-produk img {
     width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
     display: block;
-
 }
 
-.card-produk h3{
-    padding: 15px;
-    font-size: 18px;
+/* 🔑 PERBAIKAN TOTAL AREA TEKS: Agar simetris tepat di tengah kotak merah */
+.card-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;    
+    padding: 10px 15px;     
 }
 
+/* Judul Produk (Putih Kontras) */
+.text-produk-title {
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 8px 0 !important; 
+    padding: 0 !important;
+    width: 100%;
+}
+
+/* Harga Produk (Kuning) */
 .card-produk p{
-    padding: 0 15px;
-    color: #D71920;
+    color: #FDDB30;
     font-weight: bold;
-
+    text-align: center;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 .card-produk button{
-    margin: 15px;
-    width:calc(100% -30px);
-    border:none;
+    margin: 0 15px 15px 15px;
+    width: calc(100% - 30px);
+    border: none;
     background-color: #D71920;
     color: #f5f5f5;
     padding: 12px;
     border-radius: 8px;
     cursor: pointer;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.card-produk button:hover {
+    background-color: #b51218;
+}
+
+/* Kotak cadangan jika gambar kosong */
+.no-image-box {
+    height: 150px;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    font-size: 12px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+/* footer */
+.footer{
+    background: #202020;
+    color: #fff;
+    margin-top: 50px;
+    padding: 40px 20px 25px;
+}
+
+.footer-container{
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
+
+.footer h2{
+    color: #D71920;
+    font-size: 34px;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.footer-info{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-direction: column;
+}
+
+.footer-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.footer-item i{
+    color: #D71920;
+    font-size: 22px;
+}
+
+.footer hr{
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, .2);
+    margin: 30px 0 20px;
+}
+
+.copyright{
+    color: #bbb;
+    font-size: 14px;
 }
 
 /* responsive*/
@@ -151,7 +257,27 @@
     }
 
     .produk-grid{
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer{
+        padding: 50px 20px 25px;
+    }
+
+    .footer h2{
+        font-size: 28px;
+    }
+
+    .footer-item{
+        font-size: 16px;
+    }
+    
+    .footer-info{
+        gap: 25px;
+    }
+
+    .footer-item span{
+        font-size: 14px;
     }
 }
 
@@ -169,16 +295,56 @@
         height: auto;
         border-radius: 12px;
     }
+    
     .produk-grid{
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
 
-    .card-produk h3{
-        font-size: 14px;
+    /* 🔑 Penyesuaian Kotak Putih di Layar HP */
+    .inner-box-produk {
+        height: 160px; 
+        margin: 8px;
+    }
+
+    .text-produk-title{
+        font-size: 13px !important;
     }
 
     .card-produk p{
+        font-size: 14px;
+    }
+
+    .footer{
+        padding: 40px 20px;
+    }
+
+    .footer h2{
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .footer-info{
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .footer-item{
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-item i{
+        font-size: 18px;
+    }
+
+    .footer-item span{
         font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .copyright{
+        font-size: 12px;
     }
 }
